@@ -17,7 +17,6 @@ public class User {
     @NotEmpty(message = "孩子列表不能为空")
     private List<Object> childs;
     @Email(message = "email不正确")
-
     private String email;
 
 
