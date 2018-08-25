@@ -3,9 +3,7 @@ package com.cnblogs.hellxz.entity;
 import com.cnblogs.hellxz.entity.group.A;
 import com.cnblogs.hellxz.entity.group.B;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.util.List;
 
 public class User {
@@ -18,6 +16,10 @@ public class User {
     private String height;
     @NotEmpty(message = "孩子列表不能为空")
     private List<Object> childs;
+    @Email(message = "email不正确")
+
+    private String email;
+
 
     public String getUsername() {
         return username;
@@ -49,5 +51,13 @@ public class User {
 
     public void setChilds(List<Object> childs) {
         this.childs = childs;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

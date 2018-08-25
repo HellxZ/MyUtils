@@ -2,6 +2,8 @@ package com.cnblogs.hellxz.myutils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -15,7 +17,7 @@ import java.util.Set;
  *
  * <p><b>创建日期</b>: 8/24/18 12:54 PM </p>
  *
- * @author HELLXZ 张辰光
+ * @author HELLXZ 张
  * @version 1.0
  * @since jdk 1.8
  */
@@ -69,5 +71,21 @@ public class ValidatorUtils {
         return null;
     }
 
+    /**
+     * 使用BindingResult与@Valid注解一起使用实现的工具类
+     * @param result BindingResult对象
+     * @return 结果串
+     */
+    public static String validEntity(BindingResult result){
+        if(result.hasErrors()){
+            //取一条错误信息
+            ObjectError next = result.getAllErrors().iterator().next();
+            String defaultMessage = next.getDefaultMessage();
+            log.error("error={}", defaultMessage);
+            //后边可以自己返回错误信息也可以自定义
+            return "{\"code\":\"400\",\"msg\":\"" + defaultMessage + "\"}";
+        }
+        return null;
+    }
 
 }
