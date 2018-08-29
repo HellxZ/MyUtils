@@ -7,7 +7,7 @@ import java.security.MessageDigest;
 import java.util.Base64;
 
 /**
- * <b>类名</b>: MD5
+ * <b>类名</b>: MD5Utils
  * <p><b>描    述</b> MD5加密工具类 </p>
  *
  * <p><b>创建日期</b>: 2018/8/29 17:40 </p>
@@ -15,9 +15,9 @@ import java.util.Base64;
  * @version  1.0
  * @since  jdk 1.8
  */
-public class MD5 {
+public class MD5Utils {
 
-    private static final Logger log = LoggerFactory.getLogger(MD5.class);
+    private static final Logger log = LoggerFactory.getLogger(MD5Utils.class);
 
     /**
      * MD5加密
@@ -29,7 +29,6 @@ public class MD5 {
 
         try {
             messageDigest = MessageDigest.getInstance("MD5");
-            messageDigest.reset();
             messageDigest.update(str.getBytes("UTF-8"));
         } catch (Exception e) {
             throw new RuntimeException("算法名或字符编码名有错误！", e);
