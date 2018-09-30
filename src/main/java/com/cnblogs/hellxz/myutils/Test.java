@@ -2,8 +2,6 @@ package com.cnblogs.hellxz.myutils;
 
 import com.aspose.pdf.*;
 
-import java.io.InputStream;
-
 public class Test {
 
     private static String srcPath = "C:\\Users\\Administrator\\Desktop\\山东省立医院进修人员申请表-converted.pdf";         //源文件路径
@@ -23,16 +21,17 @@ public class Test {
         Document pdfDoc = new Document(srcPath);
         TextFragmentAbsorber textFragmentAbsorber = new TextFragmentAbsorber(srcText);
         PageCollection pages = pdfDoc.getPages();
-        System.out.println("文档总页码数："+pages.size());
+        System.out.println("文档总页码数：" + pages.size());
         pages.accept(textFragmentAbsorber);
         int i = 0;
-        for (TextFragment textFragment :(Iterable<TextFragment>) textFragmentAbsorber.getTextFragments()) {
+        for (TextFragment textFragment : (Iterable<TextFragment>) textFragmentAbsorber.getTextFragments()) {
             textFragment.setText(targetText);
             textFragment.getTextState().setBackgroundColor(com.aspose.pdf.Color.getWhite());  //添加红色背景
             System.out.println(++i);
         }
         pdfDoc.save(targetPath);
-        System.out.println("总共替换"+i+"处");
+        System.out.println("总共替换" + i + "处");
         System.out.println("OK");
     }
+
 }
