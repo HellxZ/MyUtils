@@ -10,9 +10,12 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 /**
  * Created by wangpeng on 2018/02/01.
+ * @author wangpeng
  */
 public class PdfUtils {
-    // 利用模板生成pdf  
+    /**
+     * 利用模板生成pdf
+     */
     public static void pdfout(Map<String,Object> o) {
         // 模板路徑  
         String templatePath = "C:\\Users\\Administrator\\Desktop\\山东省立医院进修人员申请表-converted.pdf";
@@ -25,9 +28,11 @@ public class PdfUtils {
         PdfStamper stamper;
         try {
             BaseFont bf = BaseFont.createFont("c://windows//fonts//simsun.ttc,1" , BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-            Font FontChinese = new Font(bf, 5, Font.NORMAL);
-            out = new FileOutputStream(newPDFPath);// 輸出流
-            reader = new PdfReader(templatePath);// 讀取pdf模板  
+            Font fontChinese = new Font(bf, 5, Font.NORMAL);
+            // 輸出流
+            out = new FileOutputStream(newPDFPath);
+            // 讀取pdf模板
+            reader = new PdfReader(templatePath);
             bos = new ByteArrayOutputStream();
             stamper = new PdfStamper(reader, bos);
             AcroFields form = stamper.getAcroFields();
@@ -57,7 +62,8 @@ public class PdfUtils {
                 image.setAbsolutePosition(x, y);
                 under.addImage(image);
             }
-            stamper.setFormFlattening(true);// 如果為false，生成的PDF文檔可以編輯，如果為true，生成的PDF文檔不可以編輯
+            // 如果為false，生成的PDF文檔可以編輯，如果為true，生成的PDF文檔不可以編輯
+            stamper.setFormFlattening(true);
             stamper.close();
             Document doc = new Document();
             Font font = new Font(bf, 32);

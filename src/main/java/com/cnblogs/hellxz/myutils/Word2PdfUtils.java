@@ -64,7 +64,7 @@ import java.util.Map;
  */
 public class Word2PdfUtils {
 
-    private static final Logger log = LoggerFactory.getLogger(Word2PdfUtils.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(Word2PdfUtils.class);
 
     /**
      * 将word文档， 转换成pdf, 中间替换掉变量
@@ -90,7 +90,7 @@ public class Word2PdfUtils {
      */
     public static void wordConverterToPdf(InputStream source, OutputStream target,
                                           PdfOptions options, Map<String, String> params) throws Exception {
-        log.info("开始转换word2pdf！");
+        LOGGER.info("开始转换word2pdf！");
         XWPFDocument doc = new XWPFDocument(source);
         //替换参数
         paragraphReplace(doc.getParagraphs(), params);
@@ -102,7 +102,7 @@ public class Word2PdfUtils {
             }
         }
         PdfConverter.getInstance().convert(doc, target, options);
-        log.info("转换完成！");
+        LOGGER.info("转换完成！");
     }
 
     /**
@@ -140,7 +140,7 @@ public class Word2PdfUtils {
             //替换、转换并输出
             wordConverterToPdf(source, target, params);
         } catch (Exception e) {
-            log.error("转换出现异常，错误堆栈为：", e);
+            LOGGER.error("转换出现异常，错误堆栈为：", e);
             throw new RuntimeException("转换出现异常!");
         } finally {
             //关流

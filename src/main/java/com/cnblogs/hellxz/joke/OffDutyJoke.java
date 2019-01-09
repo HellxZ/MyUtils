@@ -40,7 +40,8 @@ public class OffDutyJoke {
                     from = simpleFormat.parse(datePrefix+ today.getHour() + ":" + today.getMinute()).getTime();
                     to = simpleFormat.parse(datePrefix + " "+offHours+":"+offMinutes).getTime();
                     mid = to - from;
-                    if(from>=to) timer.cancel(); //取消定时器，会执行完本方法后结束
+                    //取消定时器，会执行完本方法后结束
+                    if(from>=to) timer.cancel();
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }

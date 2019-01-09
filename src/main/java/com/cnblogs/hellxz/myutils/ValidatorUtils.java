@@ -23,13 +23,9 @@ import java.util.Set;
  */
 public class ValidatorUtils {
 
-    private static final Logger log = LoggerFactory.getLogger(ValidatorUtils.class);
-    private static final Validator VALIDATOR;
-
-    static {
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        VALIDATOR = factory.getValidator();
-    }
+    private static final ValidatorFactory FACTORY = Validation.buildDefaultValidatorFactory();
+    private static final Logger LOGGER = LoggerFactory.getLogger(ValidatorUtils.class);
+    private static final Validator VALIDATOR = FACTORY.getValidator();
 
     /**
      * 分组进行校验或完整校验
@@ -45,7 +41,7 @@ public class ValidatorUtils {
         if (!violations.isEmpty()) {
             //这里只取第一条错误，防止返回参数过多
             ConstraintViolation<T> violation = violations.iterator().next();
-            log.error(violation.getMessage());
+            LOGGER.error(violation.getMessage());
             //下面的代码可以使用公司或个人习惯的返回工具类也可以
             return "{\"code\":\"400\",\"msg\":\"" + violation.getMessage() + "\"}";
         }
@@ -64,7 +60,7 @@ public class ValidatorUtils {
         if (!violations.isEmpty()) {
             //这里只取第一条错误，防止返回参数过多
             ConstraintViolation<T> violation = violations.iterator().next();
-            log.error(violation.getMessage());
+            LOGGER.error(violation.getMessage());
             //下面的代码可以使用公司或个人习惯的返回工具类也可以
             return "{\"code\":\"400\",\"msg\":\"" + violation.getMessage() + "\"}";
         }
@@ -81,7 +77,7 @@ public class ValidatorUtils {
             //取一条错误信息
             ObjectError next = result.getAllErrors().iterator().next();
             String defaultMessage = next.getDefaultMessage();
-            log.error("error={}", defaultMessage);
+            LOGGER.error("error={}", defaultMessage);
             //后边可以自己返回错误信息也可以自定义
             return "{\"code\":\"400\",\"msg\":\"" + defaultMessage + "\"}";
         }

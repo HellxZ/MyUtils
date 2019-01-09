@@ -18,7 +18,7 @@
  * </pre>
  ***********************************************************************/
 
-package com.cnblogs.hellxz.myutils.replacePdf;
+package com.cnblogs.hellxz.myutils.replacepdf;
 
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.parser.PdfReaderContentParser;
@@ -31,13 +31,16 @@ import java.util.Map;
  
 /**
  * 解析PDF中文本的x,y位置
- * @user : caoxu-yiyang@qq.com
+ * @author  : caoxu-yiyang@qq.com
  * @date : 2016年11月9日
  */
 public class PdfPositionParse {
  
 	private PdfReader reader;
-	private List<String> findText = new ArrayList<String>();	//需要查找的文本
+	/**
+	 * 需要查找的文本
+	 */
+	private List<String> findText = new ArrayList<>();
 	private PdfReaderContentParser parser;
  
 	public PdfPositionParse(String fileName) throws IOException{
@@ -80,9 +83,6 @@ public class PdfPositionParse {
 	
 	/**
 	 * 解析文本
-	 * @user : caoxu-yiyang@qq.com
-	 * @date : 2016年11月9日
-	 * @throws IOException
 	 */
 	public Map<String, ReplaceRegion> parse() throws IOException{
 		try{

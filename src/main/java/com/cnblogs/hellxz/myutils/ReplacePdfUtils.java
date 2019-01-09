@@ -1,6 +1,6 @@
 package com.cnblogs.hellxz.myutils;
 
-import com.cnblogs.hellxz.myutils.replacePdf.PdfReplacer;
+import com.cnblogs.hellxz.myutils.replacepdf.PdfReplacer;
 import com.itextpdf.text.DocumentException;
 import org.junit.Test;
 

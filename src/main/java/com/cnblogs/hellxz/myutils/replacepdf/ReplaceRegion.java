@@ -18,11 +18,11 @@
  * </pre>
  ***********************************************************************/
 
-package com.cnblogs.hellxz.myutils.replacePdf;
+package com.cnblogs.hellxz.myutils.replacepdf;
  
 /**
  * 需要替换的区域
- * @user : caoxu-yiyang@qq.com
+ * @author  : caoxu-yiyang@qq.com
  * @date : 2016年11月9日
  */
 public class ReplaceRegion {
@@ -39,9 +39,6 @@ public class ReplaceRegion {
 	
 	/**
 	 * 替换区域的别名
-	 * @user : caoxu-yiyang@qq.com
-	 * @date : 2016年11月9日
-	 * @return
 	 */
 	public String getAliasName() {
 		return aliasName;

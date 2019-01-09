@@ -18,7 +18,7 @@
  * </pre>
  ***********************************************************************/
 
-package com.cnblogs.hellxz.myutils.replacePdf;
+package com.cnblogs.hellxz.myutils.replacepdf;
 
 import com.itextpdf.awt.geom.Rectangle2D.Float;
 import com.itextpdf.text.pdf.parser.ImageRenderInfo;
@@ -31,14 +31,21 @@ import java.util.Map;
  
 /**
  * pdf渲染监听,当找到渲染的文本时，得到文本的坐标x,y,w,h
- * @user : caoxu-yiyang@qq.com
+ * @author  : caoxu-yiyang@qq.com
  * @date : 2016年11月9日
  */
 public class PositionRenderListener implements RenderListener{
 	
 	private List<String> findText;
-	private float defaultH;		///出现无法取到值的情况，默认为12
-	private float fixHeight;	//可能出现无法完全覆盖的情况，提供修正的参数，默认为2
+	/**
+	 * 出现无法取到值的情况，默认为12
+	 */
+	private float defaultH;
+	/**
+	 * 可能出现无法完全覆盖的情况，提供修正的参数，默认为2
+	 */
+	private float fixHeight;
+
 	public PositionRenderListener(List<String> findText, float defaultH,float fixHeight) {
 		this.findText = findText;
 		this.defaultH = defaultH;
@@ -83,7 +90,8 @@ public class PositionRenderListener implements RenderListener{
 	}
  
 	public Map<String, ReplaceRegion> getResult() {
-		for (String key : findText) {	//补充没有找到的数据
+		// 补充没有找到的数据
+		for (String key : findText) {
 			if(this.result.get(key) == null){
 				this.result.put(key, null);
 			}

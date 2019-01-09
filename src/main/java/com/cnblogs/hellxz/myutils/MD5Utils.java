@@ -35,7 +35,7 @@ public class MD5Utils {
         }
 
         byte[] byteArray = messageDigest.digest();
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder buffer = new StringBuilder();
 
         for (byte bytes : byteArray) {
             if (Integer.toHexString(0xFF & bytes).length() == 1) {
