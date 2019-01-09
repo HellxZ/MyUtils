@@ -24,11 +24,11 @@ import java.util.Set;
 public class ValidatorUtils {
 
     private static final Logger log = LoggerFactory.getLogger(ValidatorUtils.class);
-    private static final Validator validator;
+    private static final Validator VALIDATOR;
 
     static {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        validator = factory.getValidator();
+        VALIDATOR = factory.getValidator();
     }
 
     /**
@@ -41,7 +41,7 @@ public class ValidatorUtils {
      * @return 想要返回的结果
      */
     public static <T> String validEntity(final T object, Class... groups) {
-        Set<ConstraintViolation<T>> violations = validator.validate(object, groups);
+        Set<ConstraintViolation<T>> violations = VALIDATOR.validate(object, groups);
         if (!violations.isEmpty()) {
             //这里只取第一条错误，防止返回参数过多
             ConstraintViolation<T> violation = violations.iterator().next();
@@ -60,7 +60,7 @@ public class ValidatorUtils {
      * @return 校验出错返回的结果
      */
     public static <T> String validProperty(final T object, String propertyName, Class... groups) {
-        Set<ConstraintViolation<T>> violations = validator.validateProperty(object, propertyName, groups);
+        Set<ConstraintViolation<T>> violations = VALIDATOR.validateProperty(object, propertyName, groups);
         if (!violations.isEmpty()) {
             //这里只取第一条错误，防止返回参数过多
             ConstraintViolation<T> violation = violations.iterator().next();
