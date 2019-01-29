@@ -17,9 +17,10 @@ import java.net.URLEncoder;
  * <p><b>描    述</b> 文件下载工具类 </p>
  *
  * <p><b>创建日期</b>: 2019/1/9 18:38 </p>
- * @author  HELLXZ 张
- * @version  1.0
- * @since  jdk 1.8
+ *
+ * @author HELLXZ 张
+ * @version 1.0
+ * @since jdk 1.8
  */
 public class FileDownloadUtil {
 
@@ -33,8 +34,8 @@ public class FileDownloadUtil {
      * @param request      请求
      * @param response     响应
      */
-    public static void downloadFile(String filePathName, String downloadName,
-                                    HttpServletRequest request, HttpServletResponse response) {
+    public static void downloadFile(String filePathName,
+                                    String downloadName, HttpServletRequest request, HttpServletResponse response) {
         InputStream input = null;
         OutputStream output = null;
         LOGGER.info("执行下载文件功能，文件路径={}， 下载文件名={}", filePathName, downloadName);
@@ -55,6 +56,31 @@ public class FileDownloadUtil {
             throw new RuntimeException("下载文件出现异常", e);
         } finally {
             IOUtils.closeQuietly(output, input);
+        }
+    }
+
+    /**
+     * 使用字节数组下载文件，未测试
+     *
+     * @param bytes        字节数组
+     * @param downloadName 下载的文件名
+     * @param request      request请求
+     * @param response     response响应
+     */
+    public static void downloadFile(byte[] bytes,
+                                    String downloadName, HttpServletRequest request, HttpServletResponse response) {
+        OutputStream output = null;
+        try {
+            preTransferOperation(downloadName, request, response);
+
+            output = response.getOutputStream();
+            LOGGER.info("开始输出>>>>>>>");
+            output.write(bytes);
+        } catch (Exception e) {
+            LOGGER.error("下载文件出现异常", e);
+            throw new RuntimeException("下载文件出现异常", e);
+        } finally {
+            IOUtils.closeQuietly(output);
         }
     }
 
