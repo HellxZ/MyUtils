@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * <b>类名</b>: XmlUtils
- * <p><b>描    述</b>  </p>
+ * <p><b>描    述</b> Xml工具类，使用Dom4J实现 </p>
  *
  * <p><b>创建日期</b>: 2019/1/28 11:07 </p>
  *

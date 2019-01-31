@@ -24,7 +24,7 @@ import java.net.URLEncoder;
  */
 public class FileDownloadUtil {
 
-    public final static Logger LOGGER = LoggerFactory.getLogger(FileDownloadUtil.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FileDownloadUtil.class);
 
     /**
      * 下载文件

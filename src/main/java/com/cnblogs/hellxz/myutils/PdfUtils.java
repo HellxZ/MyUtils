@@ -16,12 +16,7 @@ public class PdfUtils {
     /**
      * 利用模板生成pdf
      */
-    public static void pdfout(Map<String,Object> o) {
-        // 模板路徑  
-        String templatePath = "C:\\Users\\Administrator\\Desktop\\山东省立医院进修人员申请表-converted.pdf";
-        // 生成的新文檔路徑  
-        String newPDFPath = "C:\\Users\\Administrator\\Desktop\\test2.pdf";
-
+    public static void pdfout(String templatePath, String outputPdfPath, Map<String,Object> o) {
         PdfReader reader;
         FileOutputStream out;
         ByteArrayOutputStream bos;
@@ -30,14 +25,14 @@ public class PdfUtils {
             BaseFont bf = BaseFont.createFont("c://windows//fonts//simsun.ttc,1" , BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
             Font fontChinese = new Font(bf, 5, Font.NORMAL);
             // 輸出流
-            out = new FileOutputStream(newPDFPath);
+            out = new FileOutputStream(outputPdfPath);
             // 讀取pdf模板
             reader = new PdfReader(templatePath);
             bos = new ByteArrayOutputStream();
             stamper = new PdfStamper(reader, bos);
             AcroFields form = stamper.getAcroFields();
             //文本類的內容處理
-            Map<String,String> datemap = (Map<String,String>)o.get("datemap");
+            Map<String,String> datemap = (Map<String,String>)o.get("datamap");
             form.addSubstitutionFont(bf);
             for(String key : datemap.keySet()){
                 String value = datemap.get(key);
@@ -79,18 +74,5 @@ public class PdfUtils {
             System.out.println(e);
         }
 
-    }
-
-    public static void main(String[] args) {
-        Map<String,String> map = new HashMap();
-        map.put("学校名称","23012611111111551");
-
-        Map<String,String> map2 = new HashMap();
-//        map2.put("img","C:\\Users\\Administrator\\Downloads\\meiliderichu.jpg");
-
-        Map<String,Object> o=new HashMap();
-        o.put("datemap",map);
-        o.put("imgmap",map2);
-        pdfout(o);
     }
 }  

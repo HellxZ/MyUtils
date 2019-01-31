@@ -123,29 +123,4 @@ public class Word2PdfUtils {
             }
         }
     }
-
-    @Test
-    public void test() {
-        String filepath = "C:\\Users\\Administrator\\Desktop\\文档模板.docx";
-        String outpath = "C:\\Users\\Administrator\\Desktop\\输出.pdf";
-
-        InputStream source = null;
-        OutputStream target = null;
-        try {
-            source = new FileInputStream(filepath);
-            target = new FileOutputStream(outpath);
-            Map<String, String> params = new HashMap<>();
-            //替换word中参数请添加 k-v
-//            params.put("param1","hello");
-            //替换、转换并输出
-            wordConverterToPdf(source, target, params);
-        } catch (Exception e) {
-            LOGGER.error("转换出现异常，错误堆栈为：", e);
-            throw new RuntimeException("转换出现异常!");
-        } finally {
-            //关流
-            IOUtils.closeQuietly(source);
-            IOUtils.closeQuietly(target);
-        }
-    }
 }
